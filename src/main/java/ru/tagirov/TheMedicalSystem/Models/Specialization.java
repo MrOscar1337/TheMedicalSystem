@@ -1,6 +1,16 @@
 package ru.tagirov.TheMedicalSystem.Models;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "specializations")
 public class Specialization {
-    int id;
-    String specialization_name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "specialization_id")
+    private int id;
+    @Column(name = "specialization_name")
+    private String specialization_name;
 }
