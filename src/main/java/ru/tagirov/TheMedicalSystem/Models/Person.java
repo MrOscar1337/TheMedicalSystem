@@ -23,7 +23,9 @@ public class Person {
     @Column(name = "gender")
     private String gender;
 
-    int user_id;
+    @OneToOne(optional=false, cascade=CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToOne(optional=false, cascade=CascadeType.ALL)
     @JoinColumn(name = "passport_id")

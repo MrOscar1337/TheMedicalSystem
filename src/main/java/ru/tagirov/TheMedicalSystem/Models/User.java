@@ -5,6 +5,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 import lombok.Data;
 
+
 @Data
 @Entity
 @Table(name = "users")
@@ -13,14 +14,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int id;
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "date_registration")
     private Date registration;
     @Column(name = "active")
     private boolean active;
+    @OneToOne(mappedBy = "user")
+    private Person owner;
 
     @ManyToMany
     @JoinTable(
@@ -30,4 +33,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "role_id"))
     private Collection<Role> roles;
+
+
 }
