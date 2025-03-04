@@ -30,7 +30,6 @@
                                 class="form-control"
                                 id="name"
                                 name="name"
-                                placeholder="Иван"
                                 th:field="*{person.name}"
                                 type="text"
                         />
@@ -42,7 +41,6 @@
                                 class="form-control"
                                 id="surname"
                                 name="surname"
-                                placeholder="Иванов"
                                 th:field="*{person.surname}"
                                 type="text"
                         />
@@ -54,7 +52,6 @@
                                 class="form-control"
                                 id="patronymic"
                                 name="patronymic"
-                                placeholder="Иванович"
                                 th:field="*{person.patronymic}"
                                 type="text"
                         />
@@ -101,7 +98,6 @@
                                 class="form-control"
                                 id="email"
                                 name="email"
-                                placeholder="Enter email address"
                                 th:field="*{user.email}"
                                 type="email"
                         />
@@ -113,14 +109,13 @@
                                 class="form-control"
                                 id="password"
                                 name="password"
-                                placeholder="Enter password"
                                 th:field="*{user.password}"
                                 type="password"
                         />
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
-                        <span>Уже зарегистрированы? <a th:href="/login">Войдите здесь</a></span>
+                        <span>Уже зарегистрированы? <a th:href="@{/login}">Войдите здесь</a></span>
                     </div>
                 </form>
             </div>

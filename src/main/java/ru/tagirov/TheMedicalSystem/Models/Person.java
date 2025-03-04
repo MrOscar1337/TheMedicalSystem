@@ -1,6 +1,6 @@
 package ru.tagirov.TheMedicalSystem.Models;
 
-import java.util.Date;
+import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,7 +19,7 @@ public class Person {
     @Column(name = "patronymic")
     private String patronymic;
     @Column(name = "birth")
-    private Date birth;
+    private LocalDate birth;
     @Column(name = "gender")
     private String gender;
 
@@ -40,4 +40,44 @@ public class Person {
 
     @OneToOne (optional=false, mappedBy="person")
     private Employee employeeOwner;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    public LocalDate getBirth() {
+        return birth;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

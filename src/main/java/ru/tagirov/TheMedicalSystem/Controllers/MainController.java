@@ -1,6 +1,7 @@
 package ru.tagirov.TheMedicalSystem.Controllers;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,10 +13,15 @@ import ru.tagirov.TheMedicalSystem.Models.User;
 import ru.tagirov.TheMedicalSystem.Services.PersonServiceImpl;
 import ru.tagirov.TheMedicalSystem.Services.UserServiceImpl;
 
+import java.util.List;
+
+
+@AllArgsConstructor
 @Controller
 public class MainController {
     private PersonServiceImpl personService;
     private UserServiceImpl userService;
+
 
     @GetMapping("/")
     public String home (Model model){
@@ -34,7 +40,7 @@ public class MainController {
     public String registration(@Valid @ModelAttribute("person") Person person,
                                @Valid @ModelAttribute("user") User user,
                                BindingResult result, Model model){
-        User existingUser = userService.findUserByEmail(user.getEmail());
+         User existingUser = userService.findUserByEmail(user.getEmail());
 
         if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
             result.rejectValue("email", null,
@@ -50,5 +56,17 @@ public class MainController {
         personService.savePerson(person);
         userService.saveUser(user);
         return "redirect:/";
+    }
+
+    @GetMapping("/users")
+    public String users(Model model){
+        List<User> users = userService.findAllUsers();
+        model.addAttribute("users", users);
+        return "users";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 }
