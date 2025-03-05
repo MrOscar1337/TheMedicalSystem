@@ -1,5 +1,5 @@
 package ru.tagirov.TheMedicalSystem.Services;
-
+/*
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,4 +34,4 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Invalid email or password");
         }
     }
-}
+}*/

@@ -2,6 +2,7 @@ package ru.tagirov.TheMedicalSystem.Controllers;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +20,9 @@ import java.util.List;
 @AllArgsConstructor
 @Controller
 public class MainController {
+    @Autowired
     private PersonServiceImpl personService;
+    @Autowired
     private UserServiceImpl userService;
 
 
