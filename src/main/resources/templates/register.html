@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
@@ -19,100 +18,100 @@
                 <h2 class="text-center">Регистрация</h2>
             </div>
             <div class="card-body">
-                <form
-                        method="post"
-                        role="form"
-                        th:action="@{/register/save}"
-                >
-                    <div class="form-group mb-3">
-                        <label class="form-label">Имя</label>
-                        <input
-                                class="form-control"
-                                id="name"
-                                name="name"
-                                th:field="*{person.name}"
-                                type="text"
-                        />
-                    </div>
+                <form method="post" role="form" th:action="@{/register/save}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label">Имя</label>
+                                <input class="form-control" id="name" name="name" th:field="*{person.name}" type="text" />
+                            </div>
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Фамилия</label>
-                        <input
-                                class="form-control"
-                                id="surname"
-                                name="surname"
-                                th:field="*{person.surname}"
-                                type="text"
-                        />
-                    </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Фамилия</label>
+                                <input class="form-control" id="surname" name="surname" th:field="*{person.surname}" type="text" />
+                            </div>
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Отчество</label>
-                        <input
-                                class="form-control"
-                                id="patronymic"
-                                name="patronymic"
-                                th:field="*{person.patronymic}"
-                                type="text"
-                        />
-                    </div>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Отчество</label>
+                                <input class="form-control" id="patronymic" name="patronymic" th:field="*{person.patronymic}" type="text" />
+                            </div>
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Укажите пол</label><br>
-                        <div class="form-check form-check-inline">
-                            <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    id="male"
-                                    name="gender"
-                                    value="Мужской"
-                                    th:field="*{person.gender}"/>
-                            <label class="form-check-label" for="male">Мужской</label>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Укажите пол</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="male" name="gender" value="Мужской" th:field="*{person.gender}" />
+                                    <label class="form-check-label" for="male">Мужской</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="female" name="gender" value="Женский" th:field="*{person.gender}" />
+                                    <label class="form-check-label" for="female">Женский</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Дата рождения</label>
+                                <input class="form-control" id="birth" name="birth" th:field="*{person.birth}" type="date" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Адрес электронной почты</label>
+                                <input class="form-control" id="email" name="email" th:field="*{user.email}" type="email" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Пароль</label>
+                                <input class="form-control" id="password" name="password" th:field="*{user.password}" type="password" />
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    id="female"
-                                    name="gender"
-                                    value="Женский"
-                                    th:field="*{person.gender}"/>
-                            <label class="form-check-label" for="female">Женский</label>
+
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label">Регион</label>
+                                <input class="form-control" id="region" name="region" th:field="*{person.address.region}" type="text" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Город</label>
+                                <input class="form-control" id="city" name="city" th:field="*{person.address.city}" type="text" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Улица</label>
+                                <input class="form-control" id="street" name="street" th:field="*{person.address.street}" type="text" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Дом</label>
+                                <input class="form-control" id="house" name="house" th:field="*{person.address.house}" type="text" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Квартира</label>
+                                <input class="form-control" id="flat" name="flat" th:field="*{person.address.flat}" type="number" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Фактический адрес</label>
+                                <input class="form-check-input" type="checkbox" id="fact" name="fact" th:field="*{person.address.fact}" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Серия паспорта</label>
+                                <input class="form-control" id="series" name="series" th:field="*{person.passport.series}" type="text" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Номер паспорта</label>
+                                <input class="form-control" id="number" name="number" th:field="*{person.passport.number}" type="text" />
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Дата выдачи</label>
+                                <input class="form-control" id="issue" name="issue" th:field="*{person.passport.issue}" type="date" />
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Дата рождения</label>
-                        <input
-                                class="form-control"
-                                id="birth"
-                                name="birth"
-                                th:field="*{person.birth}"
-                                type="date"
-                        />
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label class="form-label">Адрес электронной почты</label>
-                        <input
-                                class="form-control"
-                                id="email"
-                                name="email"
-                                th:field="*{user.email}"
-                                type="email"
-                        />
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label class="form-label">Пароль</label>
-                        <input
-                                class="form-control"
-                                id="password"
-                                name="password"
-                                th:field="*{user.password}"
-                                type="password"
-                        />
-                    </div>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
                         <span>Уже зарегистрированы? <a th:href="@{/login}">Войдите здесь</a></span>
