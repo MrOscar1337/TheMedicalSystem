@@ -26,4 +26,52 @@ public class Address {
 
     @OneToOne (optional=false, mappedBy="address")
     private Person owner;
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public int getFlat() {
+        return flat;
+    }
+
+    public void setFlat(int flat) {
+        this.flat = flat;
+    }
+
+    public boolean isFact() {
+        return fact;
+    }
+
+    public void setFact(boolean fact) {
+        this.fact = fact;
+    }
 }

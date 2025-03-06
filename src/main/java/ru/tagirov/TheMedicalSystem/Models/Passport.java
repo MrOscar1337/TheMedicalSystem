@@ -21,4 +21,28 @@ public class Passport {
 
     @OneToOne (optional=false, mappedBy="passport")
     private Person owner;
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public Date getIssue() {
+        return issue;
+    }
+
+    public void setIssue(Date issue) {
+        this.issue = issue;
+    }
 }

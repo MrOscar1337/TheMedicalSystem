@@ -2,7 +2,7 @@ package ru.tagirov.TheMedicalSystem.Services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.tagirov.TheMedicalSystem.Models.Role;
 import ru.tagirov.TheMedicalSystem.Models.User;
@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
- //   @Autowired
- //   private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> findAllUsers() {
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService{
         }
         user.setActive(true);
         user.setRoles(Arrays.asList(role));
-  //      user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
