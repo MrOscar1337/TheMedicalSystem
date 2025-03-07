@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
+
 @Entity
 @Table(name = "persons")
 public class Person {
@@ -23,15 +23,15 @@ public class Person {
     @Column(name = "gender")
     private String gender;
 
-    @OneToOne(optional=false, cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(optional=false, cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "passport_id")
     private Passport passport;
 
-    @OneToOne(optional=false, cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "address_id")
     private Address address;
 
@@ -79,5 +79,45 @@ public class Person {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Patient getPatientOwner() {
+        return patientOwner;
+    }
+
+    public void setPatientOwner(Patient patientOwner) {
+        this.patientOwner = patientOwner;
+    }
+
+    public Employee getEmployeeOwner() {
+        return employeeOwner;
+    }
+
+    public void setEmployeeOwner(Employee employeeOwner) {
+        this.employeeOwner = employeeOwner;
     }
 }

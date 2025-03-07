@@ -3,16 +3,29 @@ package ru.tagirov.TheMedicalSystem.Services;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.tagirov.TheMedicalSystem.Models.Person;
-import ru.tagirov.TheMedicalSystem.Repositories.PersonRepository;
+import ru.tagirov.TheMedicalSystem.Models.*;
+import ru.tagirov.TheMedicalSystem.Repositories.*;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class PersonServiceImpl implements PersonService{
     @Autowired
-    PersonRepository personRepository;
+    private final PersonRepository personRepository;
+    @Autowired
+    private final UserRepository userRepository;
+    @Autowired
+    private final PassportRepository passportRepository;
+    @Autowired
+    private final AddressRepository addressRepository;
+
+    @Autowired
+    public PersonServiceImpl(PersonRepository personRepository, UserRepository userRepository, PassportRepository passportRepository, AddressRepository addressRepository) {
+        this.personRepository = personRepository;
+        this.userRepository = userRepository;
+        this.passportRepository = passportRepository;
+        this.addressRepository = addressRepository;
+    }
 
     @Override
     public List<Person> findAllPersons() {
@@ -20,8 +33,10 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
-    public Person savePerson(Person person) {
-        return personRepository.save(person);
+    public void savePerson(Person person) {
+        personRepository.save(person);
+
+
     }
 
     @Override

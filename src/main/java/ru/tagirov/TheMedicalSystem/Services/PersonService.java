@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface PersonService {
     List<Person> findAllPersons();
-    Person savePerson(Person person);
+    void savePerson(Person person);
     Person updatePerson(Person person);
 }

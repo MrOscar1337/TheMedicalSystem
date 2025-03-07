@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.Date;
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.ArrayList;
 
 
-@Data
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,7 +22,7 @@ public class User {
     private Date registration;
     @Column(name = "active")
     private boolean active;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Person owner;
 
     @ManyToMany
@@ -32,7 +32,8 @@ public class User {
                     name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "role_id"))
-    private Collection<Role> roles;
+
+    private Collection<Role> roles = new ArrayList<>();
 
     public String getEmail() {
         return email;
