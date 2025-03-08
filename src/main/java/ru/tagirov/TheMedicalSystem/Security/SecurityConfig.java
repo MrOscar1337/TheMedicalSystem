@@ -24,15 +24,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/register", "/login", "/css/**", "/js/**", "static/**").permitAll()
+                        .requestMatchers("/", "/register", "/login", "/css/**", "/js/**", "static/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/profile")
+                        .defaultSuccessUrl("/profile") // Убедитесь, что страница /profile разрешена
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout.permitAll())
+                .csrf(csrf -> csrf.disable()); // Если нужно отключить CSRF (не рекомендуется для продакшена)
 
         return http.build();
     }

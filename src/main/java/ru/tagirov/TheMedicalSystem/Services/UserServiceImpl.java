@@ -9,11 +9,15 @@ import ru.tagirov.TheMedicalSystem.Repositories.*;
 import java.util.List;
 import java.util.Optional;
 
-@AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService{
+
     @Autowired
     private UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<User> findAllUsers() {

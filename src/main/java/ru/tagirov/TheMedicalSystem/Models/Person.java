@@ -120,4 +120,12 @@ public class Person {
     public void setEmployeeOwner(Employee employeeOwner) {
         this.employeeOwner = employeeOwner;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

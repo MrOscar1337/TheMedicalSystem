@@ -101,10 +101,7 @@ public class MainController {
             person.setBirth(dto.getBirth());
             person.setGender(dto.getGender());
 
-            // Устанавливаем связи
-            user.setOwner(person);
-            passport.setOwner(person);
-            address.setOwner(person);
+
             person.setUser(user);
             person.setPassport(passport);
             person.setAddress(address);

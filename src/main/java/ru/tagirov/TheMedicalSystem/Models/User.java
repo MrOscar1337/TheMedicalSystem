@@ -3,7 +3,6 @@ package ru.tagirov.TheMedicalSystem.Models;
 import java.util.Collection;
 import java.util.Date;
 import jakarta.persistence.*;
-import lombok.Data;
 import java.util.ArrayList;
 
 
@@ -22,7 +21,7 @@ public class User {
     private Date registration;
     @Column(name = "active")
     private boolean active;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "user", orphanRemoval = true)
     private Person owner;
 
     @ManyToMany

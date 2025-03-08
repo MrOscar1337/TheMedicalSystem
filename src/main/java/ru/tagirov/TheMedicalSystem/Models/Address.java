@@ -23,7 +23,7 @@ public class Address {
     @Column(name = "fact")
     private boolean fact;
 
-    @OneToOne (mappedBy="address", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     private Person owner;
 
     public String getRegion() {

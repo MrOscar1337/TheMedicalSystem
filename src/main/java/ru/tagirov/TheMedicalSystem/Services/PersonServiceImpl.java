@@ -1,6 +1,6 @@
 package ru.tagirov.TheMedicalSystem.Services;
 
-import lombok.AllArgsConstructor;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.tagirov.TheMedicalSystem.Models.*;
@@ -12,19 +12,9 @@ import java.util.List;
 public class PersonServiceImpl implements PersonService{
     @Autowired
     private final PersonRepository personRepository;
-    @Autowired
-    private final UserRepository userRepository;
-    @Autowired
-    private final PassportRepository passportRepository;
-    @Autowired
-    private final AddressRepository addressRepository;
 
-    @Autowired
-    public PersonServiceImpl(PersonRepository personRepository, UserRepository userRepository, PassportRepository passportRepository, AddressRepository addressRepository) {
+    public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;
-        this.userRepository = userRepository;
-        this.passportRepository = passportRepository;
-        this.addressRepository = addressRepository;
     }
 
     @Override
@@ -32,11 +22,11 @@ public class PersonServiceImpl implements PersonService{
         return personRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void savePerson(Person person) {
+        System.out.println("Сохраняем Person: " + person.getId());
         personRepository.save(person);
-
-
     }
 
     @Override

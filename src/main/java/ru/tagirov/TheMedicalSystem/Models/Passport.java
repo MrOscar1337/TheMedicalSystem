@@ -18,7 +18,7 @@ public class Passport {
     @Column(name = "date_issue")
     private Date issue;
 
-    @OneToOne (mappedBy="passport", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     private Person owner;
 
     public String getSeries() {
