@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Моя история болезни</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .narrow-table {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .history-row {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .history-row:hover {
+            background-color: #f8f9fa;
+        }
+        .history-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .history-table th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+        }
+        .history-table td, .history-table th {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+        .history-table tr:first-child th {
+            border-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0"></div>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2">Главная</a></li>
+            <li><a href="#" class="nav-link px-2">Специалисты</a></li>
+            <li><a href="#" class="nav-link px-2">Услуги</a></li>
+            <li><a href="#" class="nav-link px-2">О нас</a></li>
+        </ul>
+        <div class="col-md-3 text-end">
+            <a href="/profile" class="btn btn-primary">Личный кабинет</a>
+            <a href="/logout" class="btn btn-outline-primary me-2">Выйти</a>
+        </div>
+    </header>
+</div>
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2>Моя история болезни</h2>
+    </div>
+
+    <div class="narrow-table">
+        <table class="history-table">
+            <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Услуга</th>
+                <th>Врач</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:if="${#lists.isEmpty(treatments)}" class="alert alert-info text-center mb-3">
+                Нет записей в истории болезни
+            </div>
+            <div th:unless="${#lists.isEmpty(treatments)}">
+                <tr th:each="treatment : ${treatments}"
+                    th:class="'history-row' + ${#lists.indexOf(treatments, treatment) % 2 == 0 ? ' bg-light' : ''}"
+                    th:onclick="'location.href = \' ' + @{/treatment-details(id=${treatment.id})} + '\''">
+                    <td th:text="${#dates.format(treatment.date, 'dd.MM.yyyy')}"></td>
+                    <td th:text="${treatment.service}"></td>
+                    <td th:text="${treatment.doctor.fullName}"></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex justify-content-end mt-5">
+        <a href="/profile" class="btn btn-secondary">Назад</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNS7G7h+nqNl5xUAtX3yj"
+        crossorigin="anonymous"></script>
+</body>
+</html>
