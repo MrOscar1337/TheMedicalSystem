@@ -75,7 +75,7 @@
             <div th:unless="${#lists.isEmpty(treatments)}">
                 <tr th:each="treatment : ${treatments}"
                     th:class="'history-row' + ${#lists.indexOf(treatments, treatment) % 2 == 0 ? ' bg-light' : ''}"
-                    th:onclick="'location.href = \' ' + @{/treatment-details(id=${treatment.id})} + '\''">
+                    th:onclick="@{/treatment-details(id=${treatment.id})}">
                     <td th:text="${#dates.format(treatment.date, 'dd.MM.yyyy')}"></td>
                     <td th:text="${treatment.service}"></td>
                     <td th:text="${treatment.doctor.fullName}"></td>
