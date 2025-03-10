@@ -3,9 +3,11 @@ package ru.tagirov.TheMedicalSystem.Models;
 import java.util.Collection;
 import java.util.Date;
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.ArrayList;
 
-
+@Data
 @Entity
 @Table(name = "users")
 public class User {

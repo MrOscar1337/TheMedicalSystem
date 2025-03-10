@@ -3,6 +3,7 @@ package ru.tagirov.TheMedicalSystem.Models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "addresses")
 public class Address {
@@ -23,7 +24,7 @@ public class Address {
     @Column(name = "fact")
     private boolean fact;
 
-    @OneToOne
+    @OneToOne(mappedBy = "address", orphanRemoval = true)
     private Person owner;
 
     public String getRegion() {

@@ -4,6 +4,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "passports")
 public class Passport {
@@ -18,7 +19,7 @@ public class Passport {
     @Column(name = "date_issue")
     private Date issue;
 
-    @OneToOne
+    @OneToOne(mappedBy = "passport", orphanRemoval = true)
     private Person owner;
 
     public String getSeries() {

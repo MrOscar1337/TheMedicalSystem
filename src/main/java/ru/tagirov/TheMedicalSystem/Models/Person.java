@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
+@Data
 @Entity
 @Table(name = "persons")
 public class Person {
