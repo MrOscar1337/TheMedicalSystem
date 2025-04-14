@@ -64,14 +64,14 @@ public class MainController {
         }
 
         try {
-            // Создаем все сущности
+
             User user = new User();
             user.setEmail(dto.getEmail());
             user.setPassword(passwordEncoder.encode(dto.getPassword()));
             user.setActive(true);
             user.setRegistration(new Date());
 
-            // Получаем или создаем роль USER
+
             Role userRole = roleRepository.findByName("USER")
                     .orElseGet(() -> {
                         Role newRole = new Role();
@@ -106,7 +106,7 @@ public class MainController {
             person.setPassport(passport);
             person.setAddress(address);
 
-            // Сохраняем человека, который автоматически сохранит связанные сущности
+
             personService.savePerson(person);
             logger.info("User registered successfully: {}", dto.getEmail());
             return "redirect:/";
