@@ -49,8 +49,8 @@
             <li><a href="#" class="nav-link px-2">О нас</a></li>
         </ul>
         <div class="col-md-3 text-end">
-            <a href="/login" class="btn btn-primary">Личный кабинет</a>
-            <a href="/register" class="btn btn-outline-primary me-2">Выйти</a>
+            <a href="/profile" class="btn btn-primary">Личный кабинет</a>
+            <a href="/logout" class="btn btn-outline-primary me-2">Выйти</a>
         </div>
     </header>
 </div>
@@ -73,20 +73,8 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <p class="mb-2">
-                            <strong>ФИО:</strong>
-                            <span th:text="${person.surname} + ' ' + ${person.name} + ' ' + ${person.patronymic}"></span>
-                        </p>
-                        <p class="mb-2">
-                            <strong>Дата рождения:</strong>
-                            <span th:text="${#dates.format(person.birth, 'dd.MM.yyyy')}"></span>
-                        </p>
-                        <p class="mb-2">
-                            <strong>Пол:</strong>
-                            <span th:text="${person.gender}"></span>
-                        </p>
-                        <p class="mb-2">
                             <strong>Email:</strong>
-                            <span th:text="${person.email}"></span>
+                            <span th:text="${user.email}"></span>
                         </p>
                         <p class="mb-2">
                             <strong>Пароль:</strong>
@@ -94,23 +82,6 @@
                         </p>
                     </div>
 
-                    <div class="mb-3">
-                        <p class="mb-2">
-                            <strong>Паспортные данные:</strong>
-                            <span th:text="${person.passport.series} + ' ' + ${person.passport.number}"></span>
-                        </p>
-                        <p class="mb-2">
-                            <strong>Дата выдачи:</strong>
-                            <span th:text="${#dates.format(person.passport.issue, 'dd.MM.yyyy')}"></span>
-                        </p>
-                    </div>
-
-                    <div>
-                        <p class="mb-2">
-                            <strong>Адрес проживания:</strong>
-                            <span th:text="${person.address.region} + ', ' + ${person.address.city} + ', ' + ${person.address.street} + ', д. ' + ${person.address.house} + ', кв. ' + ${person.address.flat}"></span>
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>

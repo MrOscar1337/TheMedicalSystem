@@ -18,59 +18,8 @@
             </div>
             <div class="card-body">
                 <form method="post" role="form" th:action="@{/register}" th:object="${user}">
-                    <!-- Отображение глобальных ошибок -->
-                    <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger">
-                        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
-                    </div>
-
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label class="form-label">Имя</label>
-                                <input class="form-control" id="name" name="name" th:field="*{name}" type="text" />
-                                <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('name')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Фамилия</label>
-                                <input class="form-control" id="surname" name="surname" th:field="*{surname}" type="text" />
-                                <div th:if="${#fields.hasErrors('surname')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('surname')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Отчество</label>
-                                <input class="form-control" id="patronymic" name="patronymic" th:field="*{patronymic}" type="text" />
-                                <div th:if="${#fields.hasErrors('patronymic')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('patronymic')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Укажите пол</label><br>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="male" name="gender" value="Мужской" th:field="*{gender}" />
-                                    <label class="form-check-label" for="male">Мужской</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="female" name="gender" value="Женский" th:field="*{gender}" />
-                                    <label class="form-check-label" for="female">Женский</label>
-                                </div>
-                                <div th:if="${#fields.hasErrors('gender')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('gender')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Дата рождения</label>
-                                <input class="form-control" id="birth" name="birth" th:field="*{birth}" type="date" />
-                                <div th:if="${#fields.hasErrors('birth')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('birth')}" th:text="${err}"></p>
-                                </div>
-                            </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label">Адрес электронной почты</label>
@@ -85,77 +34,6 @@
                                 <input class="form-control" id="password" name="password" th:field="*{password}" type="password" />
                                 <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback">
                                     <p th:each="err : ${#fields.errors('password')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label class="form-label">Регион</label>
-                                <input class="form-control" id="region" name="region" th:field="*{region}" type="text" />
-                                <div th:if="${#fields.hasErrors('region')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('region')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Город</label>
-                                <input class="form-control" id="city" name="city" th:field="*{city}" type="text" />
-                                <div th:if="${#fields.hasErrors('city')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('city')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Улица</label>
-                                <input class="form-control" id="street" name="street" th:field="*{street}" type="text" />
-                                <div th:if="${#fields.hasErrors('street')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('street')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Дом</label>
-                                <input class="form-control" id="house" name="house" th:field="*{house}" type="text" />
-                                <div th:if="${#fields.hasErrors('house')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('house')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Квартира</label>
-                                <input class="form-control" id="flat" name="flat" th:field="*{flat}" type="number" />
-                                <div th:if="${#fields.hasErrors('flat')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('flat')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Фактический адрес</label>
-                                <input class="form-check-input" type="checkbox" id="fact" name="fact" th:field="*{fact}" />
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Серия паспорта</label>
-                                <input class="form-control" id="series" name="series" th:field="*{passportSeries}" type="text" />
-                                <div th:if="${#fields.hasErrors('passportSeries')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('passportSeries')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Номер паспорта</label>
-                                <input class="form-control" id="number" name="number" th:field="*{passportNumber}" type="text" />
-                                <div th:if="${#fields.hasErrors('passportNumber')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('passportNumber')}" th:text="${err}"></p>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Дата выдачи</label>
-                                <input class="form-control" id="issue" name="issue" th:field="*{passportIssue}" type="date" />
-                                <div th:if="${#fields.hasErrors('passportIssue')}" class="invalid-feedback">
-                                    <p th:each="err : ${#fields.errors('passportIssue')}" th:text="${err}"></p>
                                 </div>
                             </div>
                         </div>

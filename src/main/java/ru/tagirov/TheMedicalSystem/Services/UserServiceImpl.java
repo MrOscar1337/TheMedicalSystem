@@ -2,40 +2,71 @@ package ru.tagirov.TheMedicalSystem.Services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.tagirov.TheMedicalSystem.Models.Role;
 import ru.tagirov.TheMedicalSystem.Models.User;
-import ru.tagirov.TheMedicalSystem.Repositories.*;
+import ru.tagirov.TheMedicalSystem.Models.UserDto;
+import ru.tagirov.TheMedicalSystem.Repositories.RoleRepository;
+import ru.tagirov.TheMedicalSystem.Repositories.UserRepository;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
-
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository,
+                           RoleRepository roleRepository,
+                           PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
-    }
+    public void saveUser(UserDto userDto) {
+        User user = new User();
+        user.setEmail(userDto.getEmail());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-    @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
-    @Override
-    public void saveUser(User user) {
+        Role role = roleRepository.findByName("ROLE_ADMIN");
+        if(role == null){
+            role = checkRoleExist();
+        }
+        user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
 
     @Override
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public List<UserDto> findAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map((user) -> mapToUserDto(user))
+                .collect(Collectors.toList());
+    }
+
+    private UserDto mapToUserDto(User user){
+        UserDto userDto = new UserDto();
+        userDto.setEmail(user.getEmail());
+        return userDto;
+    }
+
+    private Role checkRoleExist(){
+        Role role = new Role();
+        role.setName("ROLE_ADMIN");
+        return roleRepository.save(role);
     }
 }
