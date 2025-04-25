@@ -14,6 +14,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/profile")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String profile(Model model, Authentication authentication) {
