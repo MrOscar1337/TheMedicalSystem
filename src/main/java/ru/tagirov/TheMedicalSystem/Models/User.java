@@ -23,6 +23,8 @@ public class User {
     private Date registration;
     @Column(name = "active")
     private boolean active;
+    @OneToOne(mappedBy = "user", orphanRemoval = true)
+    private Person owner;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -32,6 +34,14 @@ public class User {
                     name = "role_id", referencedColumnName = "role_id") }
     )
     private List<Role> roles = new ArrayList<>();
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
 
     public int getId() {
         return id;

@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.tagirov.TheMedicalSystem.Models.Person;
 import ru.tagirov.TheMedicalSystem.Models.Role;
 import ru.tagirov.TheMedicalSystem.Models.User;
 import ru.tagirov.TheMedicalSystem.Models.UserDto;
+import ru.tagirov.TheMedicalSystem.Repositories.PersonRepository;
 import ru.tagirov.TheMedicalSystem.Repositories.RoleRepository;
 import ru.tagirov.TheMedicalSystem.Repositories.UserRepository;
 
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PersonRepository personRepository;
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
@@ -34,6 +38,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void saveUser(UserDto userDto) {
         User user = new User();
+
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
@@ -42,7 +47,15 @@ public class UserServiceImpl implements UserService{
             role = checkRoleExist();
         }
         user.setRoles(Arrays.asList(role));
-        userRepository.save(user);
+
+        Person person = new Person();
+        person.setName(userDto.getName());
+        person.setSurname(userDto.getSurname());
+        person.setPatronymic(userDto.getPatronymic());
+        person.setBirth(userDto.getBirth());
+        person.setGender(userDto.getGender());
+        person.setUser(user);
+        personRepository.save(person);
     }
 
     @Override

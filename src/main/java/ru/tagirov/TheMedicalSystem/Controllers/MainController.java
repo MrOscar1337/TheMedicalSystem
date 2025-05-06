@@ -44,7 +44,7 @@ public class MainController {
 
         if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
             result.rejectValue("email", null,
-                    "There is already an account registered with the same email");
+                    "Этот email уже зарегистрирован");
         }
 
         if(result.hasErrors()){
