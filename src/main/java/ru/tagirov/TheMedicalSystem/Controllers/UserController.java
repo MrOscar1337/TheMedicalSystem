@@ -19,6 +19,7 @@ public class UserController {
         String email = authentication.getName();
         User user = userService.findUserByEmail(email);
         model.addAttribute("user", user);
+        model.addAttribute("person", user.getOwner());
         return "profile";
     }
 }
