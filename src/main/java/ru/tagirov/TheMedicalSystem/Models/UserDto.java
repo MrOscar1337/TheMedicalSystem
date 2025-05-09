@@ -5,47 +5,75 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 public class UserDto {
     private int id;
-    @NotBlank(message = "Email is mandatory")
     @Email(message = "Email should be valid")
     private String email;
 
-    @NotBlank(message = "Password is mandatory")
     @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
-
-    @NotBlank(message = "Name is mandatory")
     private String name;
-
-    @NotBlank(message = "Surname is mandatory")
     private String surname;
-
     private String patronymic;
 
     @NotNull(message = "Birth is mandatory")
     @PastOrPresent(message = "Date must be in the past or present")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birth;
-
-    @NotBlank(message = "Gender is mandatory")
     private String gender;
+    private String passportSeries;
+    private String passportNumber;
+    @NotNull(message = "Passport issue date is mandatory")
+    @PastOrPresent(message = "Passport issue date must be in the past or present")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate passportIssue;
+    private String region;
+    private String city;
+    private String street;
+    private String house;
+    private int flat;
+    private boolean fact;
 
-    public @NotBlank(message = "Name is mandatory") String getName() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public @Email(message = "Email should be valid") String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@Email(message = "Email should be valid") String email) {
+        this.email = email;
+    }
+
+    public @Size(min = 6, message = "Password must be at least 6 characters long") String getPassword() {
+        return password;
+    }
+
+    public void setPassword(@Size(min = 6, message = "Password must be at least 6 characters long") String password) {
+        this.password = password;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(@NotBlank(message = "Name is mandatory") String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public @NotBlank(message = "Surname is mandatory") String getSurname() {
+    public String getSurname() {
         return surname;
     }
 
-    public void setSurname(@NotBlank(message = "Surname is mandatory") String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
@@ -65,35 +93,83 @@ public class UserDto {
         this.birth = birth;
     }
 
-    public @NotBlank(message = "Gender is mandatory") String getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(@NotBlank(message = "Gender is mandatory") String gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getId() {
-        return id;
+    public String getPassportSeries() {
+        return passportSeries;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPassportSeries(String passportSeries) {
+        this.passportSeries = passportSeries;
     }
 
-    public @NotBlank(message = "Email is mandatory") @Email(message = "Email should be valid") String getEmail() {
-        return email;
+    public String getPassportNumber() {
+        return passportNumber;
     }
 
-    public void setEmail(@NotBlank(message = "Email is mandatory") @Email(message = "Email should be valid") String email) {
-        this.email = email;
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
     }
 
-    public @NotBlank(message = "Password is mandatory") @Size(min = 6, message = "Password must be at least 6 characters long") String getPassword() {
-        return password;
+    public @NotNull(message = "Passport issue date is mandatory") @PastOrPresent(message = "Passport issue date must be in the past or present") LocalDate getPassportIssue() {
+        return passportIssue;
     }
 
-    public void setPassword(@NotBlank(message = "Password is mandatory") @Size(min = 6, message = "Password must be at least 6 characters long") String password) {
-        this.password = password;
+    public void setPassportIssue(@NotNull(message = "Passport issue date is mandatory") @PastOrPresent(message = "Passport issue date must be in the past or present") LocalDate passportIssue) {
+        this.passportIssue = passportIssue;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public int getFlat() {
+        return flat;
+    }
+
+    public void setFlat(int flat) {
+        this.flat = flat;
+    }
+
+    public boolean isFact() {
+        return fact;
+    }
+
+    public void setFact(boolean fact) {
+        this.fact = fact;
     }
 }

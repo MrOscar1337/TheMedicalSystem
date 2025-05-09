@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.tagirov.TheMedicalSystem.Models.Person;
-import ru.tagirov.TheMedicalSystem.Models.Role;
-import ru.tagirov.TheMedicalSystem.Models.User;
-import ru.tagirov.TheMedicalSystem.Models.UserDto;
+import ru.tagirov.TheMedicalSystem.Models.*;
 import ru.tagirov.TheMedicalSystem.Repositories.PersonRepository;
 import ru.tagirov.TheMedicalSystem.Repositories.RoleRepository;
 import ru.tagirov.TheMedicalSystem.Repositories.UserRepository;
@@ -48,6 +45,19 @@ public class UserServiceImpl implements UserService{
         }
         user.setRoles(Arrays.asList(role));
 
+        Address address = new Address();
+        address.setRegion(userDto.getRegion());
+        address.setCity(userDto.getCity());
+        address.setStreet(userDto.getStreet());
+        address.setHouse(userDto.getHouse());
+        address.setFlat(userDto.getFlat());
+        address.setFact(userDto.isFact());
+
+        Passport passport = new Passport();
+        passport.setSeries(userDto.getPassportSeries());
+        passport.setNumber(userDto.getPassportNumber());
+        passport.setIssue(userDto.getPassportIssue());
+
         Person person = new Person();
         person.setName(userDto.getName());
         person.setSurname(userDto.getSurname());
@@ -55,6 +65,8 @@ public class UserServiceImpl implements UserService{
         person.setBirth(userDto.getBirth());
         person.setGender(userDto.getGender());
         person.setUser(user);
+        person.setAddress(address);
+        person.setPassport(passport);
         personRepository.save(person);
     }
 

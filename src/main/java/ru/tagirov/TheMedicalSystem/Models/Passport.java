@@ -1,5 +1,6 @@
 package ru.tagirov.TheMedicalSystem.Models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import jakarta.persistence.*;
 
@@ -16,10 +17,10 @@ public class Passport {
     @Column(name = "number")
     private String number;
     @Column(name = "date_issue")
-    private Date issue;
+    private LocalDate issue;
 
-   // @OneToOne(mappedBy = "passport", orphanRemoval = true)
-   // private Person owner;
+    @OneToOne(mappedBy = "passport", orphanRemoval = true)
+    private Person owner;
 
     public int getId() {
         return id;
@@ -45,19 +46,19 @@ public class Passport {
         this.number = number;
     }
 
-    public Date getIssue() {
+    public LocalDate getIssue() {
         return issue;
     }
 
-    public void setIssue(Date issue) {
+    public void setIssue(LocalDate issue) {
         this.issue = issue;
     }
 
- /*   public Person getOwner() {
+    public Person getOwner() {
         return owner;
     }
 
     public void setOwner(Person owner) {
         this.owner = owner;
-    } */
+    }
 }

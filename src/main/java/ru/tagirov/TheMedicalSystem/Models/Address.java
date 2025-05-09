@@ -22,8 +22,8 @@ public class Address {
     @Column(name = "fact")
     private boolean fact;
 
-  //  @OneToOne(mappedBy = "address", orphanRemoval = true)
-  //  private Person owner;
+    @OneToOne(mappedBy = "address", orphanRemoval = true)
+    private Person owner;
 
     public int getId() {
         return id;
@@ -80,12 +80,12 @@ public class Address {
     public void setFact(boolean fact) {
         this.fact = fact;
     }
-/*
+
     public Person getOwner() {
         return owner;
     }
 
     public void setOwner(Person owner) {
         this.owner = owner;
-    } */
+    }
 }
